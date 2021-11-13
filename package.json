@@ -8,14 +8,14 @@
     "express-session": "^1.17.2",
     "handlebars": "^4.7.7",
     "method-override": "^3.0.0",
-    "mongoose": "^6.0.9",
+    "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.13",
+    "nodemon": "^2.0.15",
     "npm-check-updates": "^11.8.5"
   },
   "name": "appnm",

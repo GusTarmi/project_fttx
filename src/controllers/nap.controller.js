@@ -8,8 +8,8 @@ napCtrl.renderNapForm = (req, res) =>
 
 napCtrl.createNewNap = async (req, res) =>
 {
-    const {title, description} = req.body;
-    const newNap = new NAP({title, description});
+    const {title, origin, position} = req.body;
+    const newNap = new NAP({title, origin, position});
     newNap.user = req.user._id;
     await newNap.save();
     req.flash('success_msg','NAP added successfully');
@@ -35,8 +35,8 @@ napCtrl.renderEditForm = async (req, res) =>
 
 napCtrl.updateNap = async (req, res) =>
 {
-    const { title, description } =req.body;
-    await NAP.findByIdAndUpdate(req.params.id, { title, description});
+    const { title, origin, position} =req.body;
+    await NAP.findByIdAndUpdate(req.params.id, { title, origin, position});
     req.flash('success_msg', 'NAP updated successfully');
     res.redirect('/nap');
 };
