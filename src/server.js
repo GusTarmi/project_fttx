@@ -53,6 +53,7 @@ app.use((req, res, next) => {
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/nap.routes'));
 app.use(require('./routes/users.routes'));
+app.use(require('./routes/coordinate.routes'));
 
 //Static files
 

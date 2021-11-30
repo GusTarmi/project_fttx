@@ -12,10 +12,9 @@
                     <div class="p-2">Position<span class="badge bg-secondary">{{position}}</span></div>
                 </div>
                 <div class="d-flex justify-content-around bg-ligth mb-1">
-                    <input type="checkbox" class="btn-check" id="btn-check2" onclick="changeMode()" checked
-                        autocomplete="off" />
-                    <label class="btn btn-secondary" for="btn-check2" data-toggle="starttip" data-placement="right"
-                        title="Start GPS connection" aria-hidden="true">Coordinate</label>
+                    <a href="/coordinate/new/{{_id}}">
+                        <button type="button" class="btn btn-secondary btn-rounded">Coordinate</button>
+                    </a>
                 </div>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar mb-1">
                     <table class="table table-sm table-bordered table-striped mb-0">
@@ -55,75 +54,5 @@
             $('[data-toggle="deltip"]').tooltip();
             $('[data-toggle="starttip"]').tooltip();
         });
-    </script>
-    </script>
-    <script src="libs/jquery/jquery-pjax/jquery.pjax.js"></script>
-    <script src="html/scripts/ajax.js"></script>
-
-    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-    <script type="text/javascript">
-        const Coordinate = require('../../models/Coordinate');
-        function changeMode() {
-            const options = {
-                connectTimeout: 4000,
-                // Authentication
-                clientId: 'admin',
-                username: 'web_client',
-                password: '123456',
-                keepalive: 60,
-                clean: true,
-            }
-            var connected = false;
-            // WebSocket connect url
-            const WebSocket_URL = 'wss://unbalancedfttx.ga:18083/mqtt' //wss es cunado es seguro
-            const client = mqtt.connect(WebSocket_URL, options)
-            client.on('connect', () => {
-                console.log('Mqtt conectado por WS! Exito!')
-                client.subscribe('values', {
-                    qos: 0
-                }, (error) => {
-                    if (!error) {
-                        console.log('Suscripción exitosa!')
-                    } else {
-                        console.log('Suscripción fallida!')
-                    }
-                })
-
-                // publish(topic, payload, options/callback)
-                client.publish('fabrica', 'esto es un verdadero éxito', (error) => {
-                    console.log(error || 'Mensaje enviado!!!')
-                })
-            })
-
-            client.on('message', (topic, message) => {
-                console.log('Mensaje recibido bajo tópico: ', topic, ' -> ', message.toString())
-                process_msg(topic, message);
-            })
-
-            client.on('reconnect', (error) => {
-                console.log('Error al reconectar', error)
-            })
-
-            client.on('error', (error) => {
-                console.log('Error de conexión:', error)
-            })
-        }
-        function update_values(latitude, longitude) {
-            const newCoordinate = new Coordinate({latitude, longitude});
-            newCoordinate.nap = req.nap._id;
-            await newCoordinate.save();
-            req.flash('success_msg','Coordinate added successfully');
-        }
-
-        function process_msg(topic, message) {
-            // ej: "10,11,12"
-            if (topic == "values") {
-                var msg = message.toString(); //toString()
-                var sp = msg.split(",");
-                var latitude = sp[0];
-                var longitude = sp[1];
-                save_values(latitude, longitude);
-            }
-        }
     </script>
 </div>

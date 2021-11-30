@@ -5,9 +5,9 @@ const { renderCoordinateForm, createNewCoordinate, renderCoordinate, renderEditF
 
 const {isAuthenticated} = require('../helpers/auth');
 
-//New NAP
-router.get('/nap/Coordinate', isAuthenticated, renderCoordinateForm);
-router.post('/nap/new-nap', isAuthenticated, createNewCoordinate);
+//New Coordinate
+router.get('/coordinate/new/:id', isAuthenticated, renderCoordinateForm);
+router.post('/coordinate/new-coordinate/:id', isAuthenticated, createNewCoordinate);
 
 //Get all NAPs
 router.get('/nap', isAuthenticated, renderCoordinate);

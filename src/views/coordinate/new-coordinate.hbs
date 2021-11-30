@@ -1,0 +1,25 @@
+<div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>
+                        New coordinate
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form action="/nap/new-nap" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="latitude" class="form-control" placeholder="Latitude" disabled>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="longitude" class="form-control" placeholder="Longitude" disabled>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <button class="btn btn-secundary" type="button"  disabled>
+                                <span class="spinner-grow spinner-grow-sm text-secondary" role="status" aria-hidden="true"></span>
+                                Waiting data...
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
