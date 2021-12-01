@@ -3,13 +3,13 @@ const NAP = require('../models/NAP'); //requiero la estructura de los datos
 
 napCtrl.renderNapForm = (req, res) =>
 {
-    console.log("iniciando el proceso de creacion de nueva NAP");
+    document.write("iniciando el proceso de creacion de nueva NAP");
     res.render('nap/new-nap')
 };
 
 napCtrl.createNewNap = async (req, res) =>
 {
-    console.log("Inicio de creacion de la nap");
+    document.write("Inicio de creacion de la nap");
     const {title, origin, position} = req.body;
     const newNap = new NAP({title, origin, position});
     newNap.user = req.user._id;
@@ -20,7 +20,7 @@ napCtrl.createNewNap = async (req, res) =>
 
 napCtrl.renderNap = async (req, res) =>
 {
-    console.log("renderizado de la nap nueva");
+    document.write("renderizado de la nap nueva");
     const nap = await NAP.find({user: req.user.id}).lean();
     res.render('nap/all-naps', { nap });
 };
