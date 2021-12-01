@@ -3,6 +3,7 @@ const NAP = require('../models/NAP'); //requiero la estructura de los datos
 
 napCtrl.renderNapForm = (req, res) =>
 {
+    console.log("iniciando el proceso de creacion de nueva NAP");
     res.render('nap/new-nap')
 };
 
