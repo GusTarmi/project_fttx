@@ -8,6 +8,7 @@ napCtrl.renderNapForm = (req, res) =>
 
 napCtrl.createNewNap = async (req, res) =>
 {
+    console.log("Inicio de creacion de la nap");
     const {title, origin, position} = req.body;
     const newNap = new NAP({title, origin, position});
     newNap.user = req.user._id;
@@ -18,6 +19,7 @@ napCtrl.createNewNap = async (req, res) =>
 
 napCtrl.renderNap = async (req, res) =>
 {
+    console.log("renderizado de la nap nueva");
     const nap = await NAP.find({user: req.user.id}).lean();
     res.render('nap/all-naps', { nap });
 };
